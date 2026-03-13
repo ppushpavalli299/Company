@@ -8,24 +8,10 @@
       "version": "0.0.1"
     },
     "title": "{{appTitle}}",
-    "description": "{{appDescription}}",
-    "resources": "resources.json",
-    "sourceTemplate": {
-      "id": "@sap/generator-fiori:basic",
-      "version": "1.20.4",
-      "toolsId": "9edbef34-1882-4b56-ad37-75a502255b5e"
-    }
+    "description": "{{appDescription}}"
   },
   "sap.ui": {
     "technology": "UI5",
-    "icons": {
-      "icon": "",
-      "favIcon": "",
-      "phone": "",
-      "phone@2": "",
-      "tablet": "",
-      "tablet@2": ""
-    },
     "deviceTypes": {
       "desktop": true,
       "tablet": true,
@@ -33,12 +19,20 @@
     }
   },
   "sap.ui5": {
-    "flexEnabled": true,
+    "rootView": {
+      "viewName": "project.view.AppUnified",
+      "type": "XML",
+      "id": "rootView",
+      "async": true
+    },
     "dependencies": {
       "minUI5Version": "1.145.0",
       "libs": {
         "sap.m": {},
-        "sap.ui.core": {}
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.tnt": {},
+        "sap.uxap": {}
       }
     },
     "contentDensities": {
@@ -62,37 +56,102 @@
     },
     "routing": {
       "config": {
-        "routerClass": "sap.m.routing.Router",
-        "controlAggregation": "pages",
-        "controlId": "app",
-        "transition": "slide",
-        "type": "View",
+        "routerClass": "sap.f.routing.Router",
         "viewType": "XML",
-        "path": "project.view",
-        "async": true,
-        "viewPath": "project.view"
+        "viewPath": "project.view",
+        "controlId": "fcl",
+        "controlAggregation": "beginColumnPages",
+        "async": true
       },
       "routes": [
         {
-          "name": "RouteView",
-          "pattern": ":?query:",
+          "name": "dashboard",
+          "pattern": "",
           "target": [
-            "TargetView"
+            "Dashboard"
+          ]
+        },
+        {
+          "name": "company",
+          "pattern": "company",
+          "target": [
+            "Company"
+          ]
+        },
+        {
+          "name": "company_detail",
+          "pattern": "company/{id}/{layout}",
+          "target": [
+            "Company",
+            "CompanyDetail"
+          ]
+        },
+        {
+          "name": "create_company",
+          "pattern": "create_company",
+          "target": [
+            "Company",
+            "CreateCompany"
+          ]
+        },
+        {
+          "name": "user",
+          "pattern": "user",
+          "target": [
+            "User"
+          ]
+        },
+        {
+          "name": "userdetail",
+          "pattern": "user/{id}/{layout}",
+          "target": [
+            "User",
+            "UserDetail"
+          ]
+        },
+        {
+          "name": "create_user",
+          "pattern": "create_user",
+          "target": [
+            "User",
+            "CreateUser"
           ]
         }
       ],
       "targets": {
-        "TargetView": {
-          "id": "View",
-          "name": "View"
+        "Dashboard": {
+          "viewName": "Dashboard",
+          "controlAggregation": "beginColumnPages"
+        },
+        "Company": {
+          "viewPath": "project.company",
+          "viewName": "Company",
+          "controlAggregation": "beginColumnPages"
+        },
+        "CompanyDetail": {
+          "viewPath": "project.company",
+          "viewName": "CompanyDetail",
+          "controlAggregation": "midColumnPages"
+        },
+        "CreateCompany": {
+          "viewPath": "project.company",
+          "viewName": "CreateCompany"
+        },
+        "User": {
+          "viewPath": "project.user",
+          "viewName": "User",
+          "controlAggregation": "beginColumnPages"
+        },
+        "UserDetail": {
+          "viewPath": "project.user",
+          "viewName": "UserDetail",
+          "controlAggregation": "midColumnPages"
+        },
+        "CreateUser": {
+          "viewPath": "project.user",
+          "viewName": "CreateUser"
         }
       }
-    },
-    "rootView": {
-      "viewName": "project.view.App",
-      "type": "XML",
-      "id": "App",
-      "async": true
     }
   }
 }

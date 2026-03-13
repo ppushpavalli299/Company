@@ -1,0 +1,73 @@
+<mvc:View controllerName="project.company.CompanyDetail"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:uxap="sap.uxap"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core" displayBlock="true">
+
+    <uxap:ObjectPageLayout id="oplConfigDetail" showTitleInHeaderContent="true" alwaysShowContentHeader="false" preserveHeaderStateOnScroll="false" headerContentPinnable="true" isChildPage="true">
+        <!-- HEADER -->
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle>
+
+                <uxap:expandedHeading>
+                    <Title text="{empdetailsMdl>/name}" />
+                </uxap:expandedHeading>
+
+                <uxap:snappedHeading>
+                    <Title text="{empdetailsMdl>/name}" />
+                </uxap:snappedHeading>
+
+                <uxap:expandedContent>
+                    <ObjectAttribute title="ID" text="{empdetailsMdl>/id}" />
+                </uxap:expandedContent>
+
+                <uxap:snappedContent>
+                    <ObjectAttribute title="ID" text="{empdetailsMdl>/id}" />
+                </uxap:snappedContent>
+
+                <!-- EDIT BUTTON -->
+                <uxap:actions>
+                    <Button icon="sap-icon://edit" tooltip="Edit" type="Transparent" enabled="{visible>/view}" press="onPressEdit"/>
+                </uxap:actions>
+
+                <!-- CLOSE BUTTON -->
+                <uxap:navigationActions>
+                    <Button icon="sap-icon://decline" type="Transparent" press="onClose"/>
+                </uxap:navigationActions>
+
+            </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+        <!-- SECTION -->
+        <uxap:sections>
+            <uxap:ObjectPageSection title="General">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <uxap:blocks>
+                            <form:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="2" columnsXL="4">
+                                <form:content>
+                                    <Label text="Name" required="true"/>
+                                    <Input value="{empdetailsMdl>/name}" editable="{visible>/edit}"/>
+                                    <Label text="Designation" required="true"/>
+                                    <Input value="{empdetailsMdl>/designation}" editable="{visible>/edit}"/>
+                                    <Label text="Status"/>
+                                    <Select items="{masterdataMdl>/status}" selectedKey="{empdetailsMdl>/status}" editable="{visible>/edit}">
+                                        <core:Item key="{masterdataMdl>key}" text="{masterdataMdl>text}" />
+                                    </Select>
+                                </form:content>
+                            </form:SimpleForm>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+        <!-- FOOTER -->
+        <uxap:footer>
+            <OverflowToolbar>
+                <ToolbarSpacer/>
+                <Button icon="sap-icon://save" text="Save" type="Success" press="onPressSave"/>
+                <Button icon="sap-icon://sys-cancel" text="Cancel" type="Reject" press="onPressCancel"/>
+            </OverflowToolbar>
+        </uxap:footer>
+    </uxap:ObjectPageLayout>
+</mvc:View>

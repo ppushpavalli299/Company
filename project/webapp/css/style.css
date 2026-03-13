@@ -1,1 +1,82 @@
 /* Enter your custom styles here */
+
+/* Login Page Styles */
+.loginPage {
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-image: url('../images/images.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.loginCard {
+    max-width: 20%;
+    padding: 10px; 
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(194, 12, 12, 0.2);
+    height: auto; 
+}
+  /*flexbox*/
+.fullHeightWidth {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+     /*flexbox*/
+.centeredCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.loginForm {
+    width: 100%;
+}
+
+.loginTitle {
+    text-align: center;
+    margin-bottom: 10px; 
+    font-weight: bold; 
+}
+
+.loginInput {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.loginButton {
+    width: 100%;
+    margin-top: 10px;
+}
+.tileLayout {
+	float: left;
+}
+
+.fullHeightVBox {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: auto;
+}
+
+/* Make sure the VBox inside TabContainerItem fills height and allows scrolling */
+.customTabContent {
+    height: 100%;
+    overflow-y: auto; 
+    padding: 1rem; 
+}
+.scrollableContainer {
+    overflow-y: auto;   
+    max-height: 500px;  
+    padding: 1rem;      
+}
+.formRow {
+    margin-bottom: 1rem;
+}

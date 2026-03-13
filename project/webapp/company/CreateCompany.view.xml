@@ -1,0 +1,55 @@
+<mvc:View controllerName="project.company.CreateCompany"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:uxap="sap.uxap"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core" displayBlock="true">
+
+    <uxap:ObjectPageLayout showFooter="true">
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle>
+
+                <uxap:expandedHeading>
+                    <Title text="New Company"/>
+                </uxap:expandedHeading>
+                <uxap:navigationActions>
+                    <OverflowToolbarButton icon="sap-icon://decline" press="handleClose"/>
+                </uxap:navigationActions>
+            </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+        <uxap:sections>
+            <uxap:ObjectPageSection title="General Information">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <uxap:blocks>
+                            <form:SimpleForm layout="ColumnLayout" columnsM="2" columnsL="2" columnsXL="4">
+                                <form:content>
+                                    <Label text="Employee Name"/>
+                                    <Input value="{createEmpMdl>/name}"/>
+
+                                    <Label text="Designation"/>
+                                    <Input value="{createEmpMdl>/designation}"/>
+
+                                    <Label text="Status"/>
+
+                                    <Select items="{masterdataMdl>/status}" selectedKey="{createEmpMdl>/status}">
+
+                                        <core:Item key="{masterdataMdl>key}" text="{masterdataMdl>text}"/>
+                                    </Select>
+                                </form:content>
+                            </form:SimpleForm>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+        <uxap:footer>
+            <OverflowToolbar>
+                <ToolbarSpacer/>
+                <Button text="Save" type="Success" press="onPressSave"/>
+                <Button text="Cancel" type="Reject" press="onPressCancel"/>
+            </OverflowToolbar>
+        </uxap:footer>
+    </uxap:ObjectPageLayout>
+
+</mvc:View>

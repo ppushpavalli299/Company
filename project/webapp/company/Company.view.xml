@@ -1,0 +1,114 @@
+<mvc:View controllerName="project.company.Company"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+
+    <f:DynamicPage id="page_MngCompanies" headerExpanded="true">
+        <!-- PAGE TITLE -->
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="Company"/>
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+
+        <!-- FILTER BAR -->
+        <f:header>
+            <f:DynamicPageHeader pinnable="true">
+                <fb:FilterBar id="filterbar" filterBarExpanded="true" search="onSearch" clear="clearAllFilters" useToolbar="false" showGoOnFB="true" showClearOnFB="true" showFilterConfiguration="false">
+
+                    <fb:filterItems>
+
+                        <!-- ID Filter -->
+                        <fb:FilterItem name="id" label="ID">
+                            <fb:control>
+                                <Input placeholder="Enter ID" value="{advancedFilterMdl>/id}" />
+                            </fb:control>
+                        </fb:FilterItem>
+
+                        <!-- Company Name Filter -->
+                        <fb:FilterItem name="companyName" label="Company Name">
+                            <fb:control>
+                                <Input placeholder="Enter Company Name" value="{advancedFilterMdl>/companyName}" />
+                            </fb:control>
+                        </fb:FilterItem>
+
+                        <!-- Status Filter -->
+                        <fb:FilterItem name="status" label="Status">
+                            <fb:control>
+                                <MultiComboBox items="{masterdataMdl>/status}" selectedKeys="{advancedFilterMdl>/status}" placeholder="Select Status">
+
+                                    <core:Item key="{masterdataMdl>key}" text="{masterdataMdl>text}" />
+                                </MultiComboBox>
+
+                            </fb:control>
+                        </fb:FilterItem>
+
+                    </fb:filterItems>
+                </fb:FilterBar>
+            </f:DynamicPageHeader>
+        </f:header>
+
+
+        <!-- TABLE -->
+        <f:content>
+            <Table id="tableId_companies" items="{employeeMdl>/}" mode="SingleSelectMaster" growing="true" growingThreshold="20" itemPress="onListItemPress" autoPopinMode="true" class="sapFDynamicPageAlignContent">
+                <!-- INFO TOOLBAR -->
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <ToolbarSpacer />
+                        <Button text="Create" type="Ghost" press="onCreateEmployee" />
+                        <!-- <Button icon="sap-icon://action-settings" press="openPersoDialog" /> -->
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <infoToolbar>
+                    <OverflowToolbar id="filterInfo">
+                        <Title text="{= 'Items (' + ${employeeMdl>/}.length + ')' }" />
+                        <ToolbarSpacer />
+                    </OverflowToolbar>
+                </infoToolbar>
+
+                <!-- COLUMNS -->
+                <columns>
+                    <Column>
+                        <Text text="ID"/>
+                    </Column>
+
+                    <Column>
+                        <Text text="Name"/>
+                    </Column>
+
+                    <Column>
+                        <Text text="Designation"/>
+                    </Column>
+
+                    <Column>
+                        <Text text="Status"/>
+                    </Column>
+
+                    <Column>
+                        <Text text="Actions"/>
+                    </Column>
+
+                </columns>
+
+                <!-- ROW TEMPLATE -->
+                <items>
+                    <ColumnListItem type="Navigation" press="onListItemPress">
+                        <cells>
+                            <ObjectIdentifier title="{employeeMdl>id}"/>
+                            <Text text="{employeeMdl>name}"/>
+                            <Text text="{employeeMdl>designation}"/>
+                            <ObjectStatus text="{ path: 'employeeMdl>status', formatter: '.formatter.getStatusText'}" state="{ path: 'employeeMdl>status', formatter: '.formatter.getStatusState'}"/>
+                            <Button text="View Payslip" icon="sap-icon://pdf-attachment" press="onPressViewTemplate"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

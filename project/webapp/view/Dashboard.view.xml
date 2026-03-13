@@ -1,0 +1,66 @@
+<mvc:View
+    controllerName="project.controller.Dashboard"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:u="sap.uxap">
+
+    <Page title="Applications">
+
+        <content>
+
+            <u:ObjectPageLayout>
+
+                <u:sections>
+
+                    <u:ObjectPageSection>
+
+                        <u:subSections>
+
+                            <u:ObjectPageSubSection>
+
+                                <HBox
+                                    justifyContent="Start"
+                                    alignItems="Start"
+                                    renderType="Bare"
+                                    class="sapUiSmallMargin">
+
+                                    <!-- Company Tile -->
+                                    <GenericTile
+                                        header="Company"
+                                        press="onPressCompany"
+                                        class="sapUiSmallMarginEnd">
+
+                                        <TileContent>
+                                            <ImageContent src="sap-icon://company-view"/>
+                                        </TileContent>
+
+                                    </GenericTile>
+
+                                    <!-- User Tile -->
+                                    <GenericTile
+                                        header="User"
+                                        press="onPressUser">
+
+                                        <TileContent>
+                                            <ImageContent src="sap-icon://employee"/>
+                                        </TileContent>
+
+                                    </GenericTile>
+
+                                </HBox>
+
+                            </u:ObjectPageSubSection>
+
+                        </u:subSections>
+
+                    </u:ObjectPageSection>
+
+                </u:sections>
+
+            </u:ObjectPageLayout>
+
+        </content>
+
+    </Page>
+
+</mvc:View>

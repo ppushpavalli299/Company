@@ -1,0 +1,71 @@
+<mvc:View controllerName="project.controller.AppUnified"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:tnt="sap.tnt"
+    xmlns:f="sap.f" height="100%">
+
+    <App id="app">
+
+        <pages>
+
+            <tnt:ToolPage id="toolPage">
+
+                <!-- HEADER -->
+                <tnt:header>
+                    <OverflowToolbar>
+
+                        <Button icon="sap-icon://menu2" type="Transparent" press="onToggleMenu"/>
+
+                        <Title text="Dashboard"/>
+
+                    </OverflowToolbar>
+                </tnt:header>
+
+                <!-- SIDE NAVIGATION -->
+                <tnt:sideContent>
+
+                    <tnt:SideNavigation selectedKey="{sideNavigation>/selectedKey}" itemSelect="onItemSelect">
+
+                        <tnt:NavigationList items="{sideNavigation>/navigation}">
+
+                            <!-- Parent Menu -->
+                            <tnt:NavigationListItem text="{sideNavigation>title}" icon="{sideNavigation>icon}" key="{sideNavigation>key}" expanded="{sideNavigation>expanded}">
+
+                                <!-- Child Menu -->
+                                <tnt:items items="{sideNavigation>items}">
+
+                                    <tnt:NavigationListItem text="{sideNavigation>title}" key="{sideNavigation>key}" enabled="{sideNavigation>enabled}" />
+
+                                </tnt:items>
+
+                            </tnt:NavigationListItem>
+
+                        </tnt:NavigationList>
+
+                    </tnt:SideNavigation>
+
+                </tnt:sideContent>
+
+                <!-- MAIN CONTENT -->
+                <tnt:mainContents>
+                    <f:FlexibleColumnLayout id="fcl" layout="{layoutModel>/layout}">
+                        <f:beginColumnPages>
+                            <!-- Initially loaded page, e.g., Dashboard -->
+                            <mvc:XMLView viewName="project.view.Dashboard"/>
+                        </f:beginColumnPages>
+                        <f:midColumnPages>
+                            <!-- This is where CompanyDetail will be inserted -->
+                        </f:midColumnPages>
+                        <f:endColumnPages>
+                            <!-- Optional third column -->
+                        </f:endColumnPages>
+                    </f:FlexibleColumnLayout>
+                </tnt:mainContents>
+
+            </tnt:ToolPage>
+
+        </pages>
+
+    </App>
+
+</mvc:View>
